@@ -2,9 +2,9 @@ User Stories
 
 1. Users should be able to load game in browser from url.
 	>User should be able to see game board
-2.Users should be able to start a game by pressing start button
+2. Users should be able to start a game by pressing start button
 	>User should be able to see pieces @ starting positions
-3.Users should be able to activate die roll to determine who goes first.
+3. Users should be able to activate die roll to determine who goes first.
 4. User 1 should be able to role dice to start turn.
 5. User 1 should be able to move tokens(pieces) based on dice roll
 6. User 1 should be able to complete his turn after taking his moves and transfer to User 2
@@ -20,6 +20,8 @@ User Stories
 16. Users should recieve notice when a match is won (who won it) and what the current score is.
 17. User should be able to play AI opponent
 18. User should be able to change difficulty of AI
+19. User should hear sound effect when dice rolled
+20. User should be able to mute sounds...
 
 
 Milestone 1
