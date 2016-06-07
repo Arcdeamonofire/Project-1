@@ -23,9 +23,13 @@ User Stories
 19. User should hear sound effect when dice rolled
 20. User should be able to mute sounds...
 
+MVP: 2 users, win condition(display winner), render board, detect peices, dice
+
+Strech Goals: keeping score, double, animation
+
 
 Milestone 1
-MVP: Backgammon Board w/ piece which can respond to user interface and move around board.
+Backgammon Board w/ piece which can respond to user interface and move around board.
 
 Milestone 2
 Can't move pieces onto "blocked" locations. When moved to locaiton w/ 1 token > token is bumped
@@ -41,6 +45,7 @@ Proposed Schedule:
 
 Tuesday - 1st half of Milestone 1
 Goals:
+GET PERMISSION FROM KRISTYN TO DO THIS PROJECT
 1. Create Repo & HTML,CSS,JS files
 2. Set up Issues section of Repo with User stories and goals for project
 3. Create game board
