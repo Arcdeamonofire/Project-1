@@ -2,7 +2,7 @@
 Project 1 of WDI-Remote: Backgammon in Browser Game
 
 ##Languages used: 
-HTML, CSS, Vanilla Javascript, JQuery
+HTML, CSS, Vanilla Javascript, jQuery
 
 ##Synopsis
 
@@ -17,11 +17,12 @@ May need to turn this into an image at some point. Until then here is a like to 
 Image of a completed Gammon board:
 ![alt text](https://github.com/Arcdeamonofire/project-1/blob/master/Planning/BG%20example%20site%20for%20visual%20reference.png)
 
-##Technologies Used
+##Technologies Used (API Reference?)
+jQuery: http://api.jquery.com/
 
-##Approach:
+##Approach
 
-##Live Site Link:
+##Live Site Link
 
 ##Installation Instructions
 
