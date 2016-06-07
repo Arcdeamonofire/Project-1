@@ -11,7 +11,7 @@ At the top of the file there should be a short introduction and/ or overview tha
 ## Potential MVP
 2 users, win condition(display winner), render board, detect peices, dice
 
-Strech Goals: keeping score, double, animation
+**Strech Goals:** keeping score, double, animation
 
 ##Wireframe
 May need to turn this into an image at some point. Until then here is a like to the PDF: https://github.com/Arcdeamonofire/project-1/blob/master/Planning/P1-Wireframe1.pdf
