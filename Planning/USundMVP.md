@@ -42,15 +42,16 @@ Proposed Schedule:
 Tuesday - 1st half of Milestone 1
 Goals:
 1. Create Repo & HTML,CSS,JS files
-2. Create game board
+2. Set up Issues section of Repo with User stories and goals for project
+3. Create game board
 	Stretch: make it responsive
-3. Create tokens and get them placed properly on game board
-4. Get start button function working
+4. Create tokens and get them placed properly on game board
+5. Get start button function working
 	Stretch: reset button?
 
 User stories: 1a, 2, 2a, 15(reset button)
 
-Wednesday Complete Milestone 1 and 2 reach MVP!
+Wednesday - Complete Milestone 1 and 2 reach MVP!
 Goals:
 1. Get pieces to move (respond to user interaction)
 2. Set parameters for blocks and bumps
