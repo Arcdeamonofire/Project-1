@@ -1,8 +1,9 @@
-
+html{
+	min-width: 510px;
+}
 body{
 	width: 96.5vw;
-	height:76.8vh;
-	min-width: 310px;
+	height:80vh;
 /*	background-image: url(pics/Board.gif);
 	background-size: 94vw 92vw;
 	background-repeat: no-repeat;*/
@@ -12,9 +13,14 @@ body{
 	justify-content:space-around;
 	flex-wrap: wrap;
 }
+button{
+	display:block;
+	text-align: center;
+	margin: 0 auto;
+}
 section{
-	width: 96.5vw;
-	height:40vw;
+	width: 100%vw;
+	height:50%;
 	display: flex;
 	justify-content:space-around;
 	flex-wrap: wrap;
@@ -22,13 +28,14 @@ section{
 
 div.game-board {
 	width:6.5vw;
-	height:40vw;
+	height:100%;
 	border:1px solid black;
 	padding:0;
 	margin:0 auto;
 	flex-grow:1;
 	display:flex;
 	flex-direction:column;
+	text-align: center;
 /*	background-image: url(pics/IT.gif);
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -40,9 +47,9 @@ div.token{
 	height: 5vw;
 	box-sizing: border-box;
 	border:1px black solid;
-	-moz-border-radius: 2.5vw;
-	-webkit-border-radius: 2.5vw;
-	border-radius: 2.5vw;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
 	margin: 0 auto;
 }
 
@@ -56,8 +63,8 @@ div.black{
 }
 
 #bump{
-	/*background:brown;*/
-	width:2vw;
+	background:brown;
+	/*width:2vw;*/
 }
 
 #home1{
@@ -79,4 +86,13 @@ div.black{
 
 .bottom{
 	align-content: flex-end;
+}
+
+.chip{
+	width:6vw;
+	height:1vw;
+	margin:0 auto;
+	border:1px black solid;
+	background:white;
+	box-sizing:border-box;
 }
