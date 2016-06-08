@@ -36,12 +36,15 @@ div.game-board {
 	display:flex;
 	flex-direction:column;
 	text-align: center;
+	/*http://apps.eky.hk/css-triangle-generator/*/
 /*	background-image: url(pics/IT.gif);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: bottom;*/
 }
 
+
+/*https://css-tricks.com/examples/ShapesOfCSS/*/
 div.token{
 	width: 5vw;
 	height: 5vw;
@@ -51,6 +54,7 @@ div.token{
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	margin: 0 auto;
+	z-index: 999;
 }
 
 div.white{
