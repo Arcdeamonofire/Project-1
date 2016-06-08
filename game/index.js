@@ -23,13 +23,13 @@ var $tokenMove = function(){
 		var self = $(this);
 		console.log(self);
 
-		$(document).mousemove(function(event){
-			var X = event.pageX;
-			var Y = event.pageY;
-			self.style.left = event.pageX-25+'px';
-    		self.style.top = event.pageY-25+'px';
+		// $(document).mousemove(function(event){
+		// 	var X = event.pageX;
+		// 	var Y = event.pageY;
+		// 	self.style.left = event.pageX-25+'px';
+  //   		self.style.top = event.pageY-25+'px';
 
-		});
+		// });
 	// 	$(this).mouseup(function() {
  //    		document.onmousemove = null
  //  		});
