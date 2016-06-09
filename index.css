@@ -1,0 +1,102 @@
+html{
+	min-width: 510px;
+}
+body{
+	width: 96.5vw;
+	height:80vh;
+/*	background-image: url(pics/Board.gif);
+	background-size: 94vw 92vw;
+	background-repeat: no-repeat;*/
+	padding-top:1.4vw;
+	padding-left:.8vw;
+	display: flex;
+	justify-content:space-around;
+	flex-wrap: wrap;
+}
+button{
+	display:block;
+	text-align: center;
+	margin: 0 auto;
+}
+section{
+	width: 100%vw;
+	height:50%;
+	display: flex;
+	justify-content:space-around;
+	flex-wrap: wrap;
+}
+
+div.game-board {
+	width:6.5vw;
+	height:100%;
+	border:1px solid black;
+	padding:0;
+	margin:0 auto;
+	flex-grow:1;
+	display:flex;
+	flex-direction:column;
+	text-align: center;
+	/*http://apps.eky.hk/css-triangle-generator/*/
+/*	background-image: url(pics/IT.gif);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: bottom;*/
+}
+
+
+/*https://css-tricks.com/examples/ShapesOfCSS/*/
+div.token{
+	width: 5vw;
+	height: 5vw;
+	box-sizing: border-box;
+	border:1px black solid;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	margin: 0 auto;
+	z-index: 999;
+}
+
+div.white{
+	background:white;
+}
+
+div.black{
+	background:black;
+	border:1px white solid;
+}
+
+#bump{
+	background:brown;
+	/*width:2vw;*/
+}
+
+#home1{
+	background:black;
+	color:white;
+}
+
+#home2{
+	background:gray;
+}
+
+.hide{
+	display: none;
+}
+
+.top{
+	align-content:flex-start;
+}
+
+.bottom{
+	align-content: flex-end;
+}
+
+.chip{
+	width:6vw;
+	height:1vw;
+	margin:0 auto;
+	border:1px black solid;
+	background:white;
+	box-sizing:border-box;
+}
