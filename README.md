@@ -21,10 +21,7 @@ Image of a completed Gammon board:
 
 ##Technologies Used (API Reference?)
 jQuery: http://api.jquery.com/
-<<<<<<< HEAD
-=======
 jQueryUI: https://code.jquery.com/ui/
->>>>>>> cf98dd851ee78ffabad6fc64265c26e16943992e
 
 ##Approach
 

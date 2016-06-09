@@ -100,3 +100,27 @@ div.black{
 	background:white;
 	box-sizing:border-box;
 }
+.dice{
+	height:68px;
+	width: 68px;
+	display:inline-block;
+	background:black;
+}
+.d1{
+	background-image: url(pics/dieRed_border1.png);
+}
+.d2{
+	background-image: url(pics/dieRed_border2.png);
+}
+.d3{
+	background-image: url(pics/dieRed_border3.png);
+}
+.d4{
+	background-image: url(pics/dieRed_border4.png);
+}
+.d5{
+	background-image: url(pics/dieRed_border5.png);
+}
+.d6{
+	background-image: url(pics/dieRed_border6.png);
+}
