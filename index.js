@@ -46,7 +46,7 @@ var $showDice = function(){
 	for(var i=0; i < $dice.length; i++){
 		console.log(i);
 		if($dice[i] === 1){
-			$diceBox.eq(i).addClass('d1');
+			$('.dice').eq(i).addClass('d1');
 		}
 	};
 
