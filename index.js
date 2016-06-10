@@ -15,7 +15,7 @@ var $place;
 var $self;
 var $move;
 var $clicks = 0;
-var $mouseClick;
+var $mouseClick = 0;
 var $isDouble;
 // $gameBoard.each(function(i){
 // 	$gameBoard.eq(i).data('value': i);
@@ -93,10 +93,10 @@ var $tokenClick = function(){ //activates a token click event
 
 
 	// http://stackoverflow.com/questions/1206203/how-to-distinguish-between-left-and-right-mouse-click-with-jquery
-		if(event.which === 1 && $mouseClick !== 1){
+		if(event.which === 1 && $mouseClick === 0 || $mouseClick === 2){
 			$mouseClick = 1;
 			$move = $dice[0];
-		} else if(event.which === 2 && $mouseClick !== 2){
+		} else if(event.which === 2 && $mouseClick === 0 || $mouseClick === 1){
 			$mouseClick = 2;
 			$move = $dice[1];
 		} else {
@@ -108,7 +108,7 @@ var $tokenClick = function(){ //activates a token click event
 			$(this).remove()
 			$tokenMove();
 		} else {
-			$click = 0;
+			
 			$rollDice();
 			console.log('next player Pls');
 		}
