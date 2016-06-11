@@ -90,6 +90,7 @@ var $tokenClick = function(){ //activates a token click event
 			$self = $(this);
 			$place = $self.parent().data('value'); //the current location of the token
 			// console.log($self, $place);
+			$ifHomestretch(); //will check if tokens are in the homestretch before moving them or playing them.
 
 		// http://stackoverflow.com/questions/1206203/how-to-distinguish-between-left-and-right-mouse-click-with-jquery
 			//needs to be reworked
@@ -163,10 +164,10 @@ var $tokenMove = function(){ //moves the clicked on token
 	// console.log(diabolaRosa[$place + $move]);
 
 	if($self.hasClass('black')){
-		var eenie = diabolaRosa[$place - $move];
+		var eenie = diabolaRosa[$place - $move]; //black is headed to [0]
 			// console.log(eenie)
 	}  else if ($self.hasClass('white')){
-		var eenie = diabolaRosa[$place + $move];
+		var eenie = diabolaRosa[$place + $move]; //white is headed to [23]
 			// console.log(eenie)
 	}
 
@@ -174,29 +175,7 @@ var $tokenMove = function(){ //moves the clicked on token
 	$('div[data-value=' + eenie +']').append($self);
 	// console.log(eenie)
 
-
-
-
-
-
-	// console.log($gameBoard);
-	// console.log($dice, $self, $place);
-		// if($self.hasClass('black')){
-		// 	if($gameBoard.eq($place).hasClass('top')){
-		// 		$gameBoard.eq($place + $move).append($self);
-		// 	} else {
-		// 		$gameBoard.eq($place - $move).append($self);
-		// 	}
-		// } else if ($self.hasClass('white')){
-		// 	if($gameBoard.eq($place).hasClass('bottom')){
-		// 		$gameBoard.eq($place + $move).append($self);
-		// 	} else {
-		// 		$gameBoard.eq($place - $move).append($self);
-		// 	}
-		// }
-	
-
-	//$gameBoard[0-11]are the top divs from left to right.
+	//$gameBoard[11-0]are the top divs from left to right.
 	//$gameBoard[12-23]are the bottom from left to right
 	//White tokens which are heading to the bottom right are in:
 	//$gameBoard[0:5,11:2,16:3,18:5]
@@ -204,7 +183,7 @@ var $tokenMove = function(){ //moves the clicked on token
 	//$gameBoard[4:3,6:5,12:5,23:2]
 
 		//need to set up special rules for the final stretch portion of the
-	//board for black(6-11) and white (18-23); If the token is in this section
+	//board for black(0-5) and white (18-23); If the token is in this section
 	//then there will be certain conditions placed on it.
 		//It cannot move more than the possible spaces between it and the win
 		//box, so a 6 cannot be used on any of the pieces in that position.
@@ -216,6 +195,11 @@ var $tokenMove = function(){ //moves the clicked on token
 	//anyway the tokens need to stop @ 11 and @ 23 respectively... :/
 
 }
+
+var $ifHomestretch = function(){
+	console.log('herro');
+}
+
 
 var $resetButton = function(){
 	$($start).click(function(){
@@ -254,3 +238,24 @@ var $resetButton = function(){
  //  		});
 	// });
 	// document.getElementsByClassName('token').ondragstart = function() { return false }
+
+
+
+
+//more scraped code. it wasn't working replaced it with something that seems to be doing what I want
+
+	// console.log($gameBoard);
+	// console.log($dice, $self, $place);
+		// if($self.hasClass('black')){
+		// 	if($gameBoard.eq($place).hasClass('top')){
+		// 		$gameBoard.eq($place + $move).append($self);
+		// 	} else {
+		// 		$gameBoard.eq($place - $move).append($self);
+		// 	}
+		// } else if ($self.hasClass('white')){
+		// 	if($gameBoard.eq($place).hasClass('bottom')){
+		// 		$gameBoard.eq($place + $move).append($self);
+		// 	} else {
+		// 		$gameBoard.eq($place - $move).append($self);
+		// 	}
+		// }
