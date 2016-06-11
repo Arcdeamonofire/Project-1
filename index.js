@@ -2,11 +2,12 @@ console.log('Initiation complete. Hello')
 //variables so far.....
 var $start = $('<button>').addClass('start').html('Start');
 var $roll = $('<button>').addClass('roll').html('Roll Dice');
-var $turn = 0; // will be used to alternate turns
+var $turn = 1; // will be used to alternate turns
 var random = function(){
 	return 1 + Math.floor(Math.random() * 6);
 }
 var $dice = [];
+var diabolaRosa = [];
 var $dieBox1=('<div class="dice"></div>');
 var $dieBox2=('<div class="dice"></div>');
 var $diceBox=('<div class="dice-box">'+$dieBox1+$dieBox2+'</div>');
@@ -14,9 +15,10 @@ var $gameBoard;
 var $place;
 var $self;
 var $move;
-var $clicks = 0;
+var $click = 0;
 var $mouseClick = 0;
-var $isDouble;
+var $isDouble = false;
+var eenie;
 // $gameBoard.each(function(i){
 // 	$gameBoard.eq(i).data('value': i);
 // });
@@ -30,38 +32,38 @@ $(window).load(function() {
 		$start.removeClass('start').addClass('reset').html('Reset');
 		$('h1').append($diceBox);
 		$('h1').append($roll);
-		$rollDice();
+		$rollDice(); //line 39
 
-		$resetButton();
+		$resetButton(); //line 160
 	});
 });
 
 var $rollDice = function(){
-	$turn += 1;
-	console.log($turn);
 	$($roll).click(function(){
+
 		var $die1 = random();
 		var $die2 = random();
-		if($die1 === $die2){
-			$isDouble === true;
-			console.log('IS DOUBLES!!!!!');
-		} else {
-			$isDouble === false;
-		}
 		$dice = [$die1, $die2];
 		// console.log($dice);
-		$showDice();
-		$click = 0;
+		$showDice(); //line 64
 	});
 	
 }
 
+//need to set up special conditions for Dice doubles!!!
+
+// var $findDoubles = function(){
+// 		if($die1 === $die2){
+// 		$isDouble === true;
+// 		console.log('IS DOUBLES!!!!!');
+// 	} else {
+// 		$isDouble === false;
+// 	}
+// }
+
 var $showDice = function(){ //currently only works for 1 type of dice
-	// console.log($dice);
-	// console.log($dice.length);
 	//dice images: Credit (Kenney or www.kenney.nl)
 	for(var i=0; i < $dice.length; i++){
-		// console.log(i);
 		if($dice[i] === 1){
 			$('.dice').eq(i).css('background-image', 'url(pics/dieRed_border1.png)');
 		} else if($dice[i] === 2){
@@ -77,50 +79,131 @@ var $showDice = function(){ //currently only works for 1 type of dice
 		}
 	};
 
-//need to set up special conditions for Dice doubles!!!
-
 	$tokenClick();
 }
 
 var $tokenClick = function(){ //activates a token click event
-	$($('.token')).click(function(event){
-		$click += 1
-		console.log($click);
-		$self = $(this);
-		$place = $self.parent().data('value'); //the current location of the token
-		// console.log($self, $place);
-	
-
-
-	// http://stackoverflow.com/questions/1206203/how-to-distinguish-between-left-and-right-mouse-click-with-jquery
-		if(event.which === 1 && $mouseClick === 0 || $mouseClick === 2){
-			$mouseClick = 1;
-			$move = $dice[0];
-		} else if(event.which === 2 && $mouseClick === 0 || $mouseClick === 1){
-			$mouseClick = 2;
-			$move = $dice[1];
-		} else {
-			console.log('hmm try the other die?')
-		}
-		console.log($move);
-		
-		if($click < 3){
-			$(this).remove()
-			$tokenMove();
-		} else {
+	if($turn%2){
+		$($('.black')).click(function(event){
 			
-			$rollDice();
-			console.log('next player Pls');
-		}
-		
-	});
+			console.log($click);
+			$self = $(this);
+			$place = $self.parent().data('value'); //the current location of the token
+			// console.log($self, $place);
+
+		// http://stackoverflow.com/questions/1206203/how-to-distinguish-between-left-and-right-mouse-click-with-jquery
+			//needs to be reworked
+			if(event.which === 1 && $mouseClick === 0 || $mouseClick === 2){
+				$mouseClick = 1;
+				$move = $dice[0];
+			} else if(event.which === 2 && $mouseClick === 0 || $mouseClick === 1){
+				$mouseClick = 2;
+				$move = $dice[1];
+			}
+			console.log($move);
+			$click += 1
+			if($click <= 2){
+				$(this).remove()
+				$tokenMove();
+			} else if ($click >= 3){
+				$click = 0;
+				$turn += 1;
+				console.log($turn);
+				console.log('next player Pls');
+				$($('.token')).off('click');
+			}
+			
+		});
+	} else {
+			$($('.white')).click(function(event){
+			
+			console.log($click);
+			$self = $(this);
+			$place = $self.parent().data('value'); //the current location of the token
+			// console.log($self, $place);
+
+		// http://stackoverflow.com/questions/1206203/how-to-distinguish-between-left-and-right-mouse-click-with-jquery
+			//needs to be reworked
+			if(event.which === 1 && $mouseClick === 0 || $mouseClick === 2){
+				$mouseClick = 1;
+				$move = $dice[0];
+			} else if(event.which === 2 && $mouseClick === 0 || $mouseClick === 1){
+				$mouseClick = 2;
+				$move = $dice[1];
+			}
+			console.log($move);
+			$click += 1
+			if($click <= 2){
+				$(this).remove()
+				$tokenMove();
+			} else if ($click >= 3){
+				$click = 0;
+				$turn += 1;
+				console.log($turn);
+				console.log('next player Pls');
+				$($('.token')).off('click');
+			}
+			
+		});
+	}
 
 }
 
 var $tokenMove = function(){ //moves the clicked on token
-	$gameBoard = $('.play'); //the array of columns
+	var $gameBoard = $('.play'); //the array of columns
+	// $gameBoard.each(function(){  //game check
+	// 	console.log($(this).data('value'))
+	// })
+	for(i = 0; i < 24; i++){
+		diabolaRosa.push(i);
+	}
+	// console.log(diabolaRosa);
 
-	//need to set up special rules for the final stretch portion of the
+	// console.log(diabolaRosa[$place]);
+	// console.log(diabolaRosa[$place + $move]);
+
+	if($self.hasClass('black')){
+		var eenie = diabolaRosa[$place - $move];
+			// console.log(eenie)
+	}  else if ($self.hasClass('white')){
+		var eenie = diabolaRosa[$place + $move];
+			// console.log(eenie)
+	}
+
+	//this helped with this problem: http://stackoverflow.com/questions/4191386/jquery-how-to-find-an-element-based-on-a-data-attribute-value
+	$('div[data-value=' + eenie +']').append($self);
+	// console.log(eenie)
+
+
+
+
+
+
+	// console.log($gameBoard);
+	// console.log($dice, $self, $place);
+		// if($self.hasClass('black')){
+		// 	if($gameBoard.eq($place).hasClass('top')){
+		// 		$gameBoard.eq($place + $move).append($self);
+		// 	} else {
+		// 		$gameBoard.eq($place - $move).append($self);
+		// 	}
+		// } else if ($self.hasClass('white')){
+		// 	if($gameBoard.eq($place).hasClass('bottom')){
+		// 		$gameBoard.eq($place + $move).append($self);
+		// 	} else {
+		// 		$gameBoard.eq($place - $move).append($self);
+		// 	}
+		// }
+	
+
+	//$gameBoard[0-11]are the top divs from left to right.
+	//$gameBoard[12-23]are the bottom from left to right
+	//White tokens which are heading to the bottom right are in:
+	//$gameBoard[0:5,11:2,16:3,18:5]
+	//Black are heading to the top right are in:
+	//$gameBoard[4:3,6:5,12:5,23:2]
+
+		//need to set up special rules for the final stretch portion of the
 	//board for black(6-11) and white (18-23); If the token is in this section
 	//then there will be certain conditions placed on it.
 		//It cannot move more than the possible spaces between it and the win
@@ -131,32 +214,6 @@ var $tokenMove = function(){ //moves the clicked on token
 	//that 5 can be used to move a piece from the 9 column into the goal.
 
 	//anyway the tokens need to stop @ 11 and @ 23 respectively... :/
-
-
-
-	// console.log($gameBoard);
-	// console.log($dice, $self, $place);
-		if($self.hasClass('black')){
-			if($gameBoard.eq($place).hasClass('top')){
-				$gameBoard.eq($place + $move).append($self);
-			} else {
-				$gameBoard.eq($place - $move).append($self);
-			}
-		} else if ($self.hasClass('white')){
-			if($gameBoard.eq($place).hasClass('bottom')){
-				$gameBoard.eq($place + $move).append($self);
-			} else {
-				$gameBoard.eq($place - $move).append($self);
-			}
-		}
-	
-
-	//$gameBoard[0-11]are the top divs from left to right.
-	//$gameBoard[12-23]are the bottom from left to right
-	//White tokens which are heading to the bottom right are in:
-	//$gameBoard[0:5,11:2,16:3,18:5]
-	//Black are heading to the top right are in:
-	//$gameBoard[4:3,6:5,12:5,23:2]
 
 }
 
