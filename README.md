@@ -6,7 +6,9 @@ HTML, CSS, Vanilla Javascript, jQuery
 
 ##Synopsis
 
-At the top of the file there should be a short introduction and/ or overview that explains what the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+First pass at creation of a backgammon like board game within a browser window. Using HTML/CSS the goal was to create a game board and the tokens then using Javascript and jQuery the idea was to manipulate the DOM in order to play the game. The game was to be two player and invovle alternating turns, dynamic dice, win conditions for both players, and the ability to move the pieces around the board with the dice values.
+
+Each piece has been created and is usable, unfortunatley the game is incredibly buggy, but what else is to be expected of a first pass. Much will have to be fixed, recoded, or just cleaned up to debug this little game. In the future I'd like to add other Backgammon characteristics like bumping (knocking a piece off the board if it is the only one in its column), blocking keeping a player from moving into a column if there are two opposing pieces, dice double rewards, as well as win condition add ons like doubling, and match points. For now it sits as an experiment in learning that for a game like this approaching it from the Javascript first might have been a better idea. You can try playing the game if you want. Enjoy!
 
 ## Potential MVP
 2 users, win condition(display winner), render board, detect peices, dice
