@@ -43,7 +43,7 @@ None :)
 
 ##Unsolved Problems
 
-Oh plenty of bugs, 
+Oh plenty of bugs, see https://github.com/Arcdeamonofire/project-1/issues for a better list. I'm trying to keep track of it all here. Probably never going to get around to the sound effects
 
 right now 3 clicks are required to change turns even though two moves are taken.
 
