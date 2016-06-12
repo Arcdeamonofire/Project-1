@@ -16,6 +16,9 @@ At the top of the file there should be a short introduction and/ or overview tha
 ##Wireframe
 May need to turn this into an image at some point. Until then here is a like to the PDF: https://github.com/Arcdeamonofire/project-1/blob/master/Planning/P1-Wireframe1.pdf
 
+Current game board
+![alt text](https://github.com/Arcdeamonofire/project-1/blob/master/Planning/board.png)
+
 Image of a completed Gammon board:
 ![alt text](https://github.com/Arcdeamonofire/project-1/blob/master/Planning/BG%20example%20site%20for%20visual%20reference.png)
 
