@@ -19,6 +19,7 @@ var $click = 0;
 var $mouseClick = 0;
 var $isDouble = false;
 var eenie;
+var $count=0;
 // $gameBoard.each(function(i){
 // 	$gameBoard.eq(i).data('value': i);
 // });
@@ -86,11 +87,11 @@ var $tokenClick = function(){ //activates a token click event
 	if($turn%2){
 		$($('.black')).click(function(event){
 			
-			console.log($click);
+			
 			$self = $(this);
 			$place = $self.parent().data('value'); //the current location of the token
 			// console.log($self, $place);
-			$ifHomestretch(); //will check if tokens are in the homestretch before moving them or playing them.
+
 
 		// http://stackoverflow.com/questions/1206203/how-to-distinguish-between-left-and-right-mouse-click-with-jquery
 			//needs to be reworked
@@ -102,10 +103,18 @@ var $tokenClick = function(){ //activates a token click event
 				$move = $dice[1];
 			}
 			console.log($move);
-			$click += 1
-			if($click <= 2){
-				$(this).remove()
-				$tokenMove();
+			// $ifHomestretchBlack(); //will check if tokens are in the homestretch before moving them or playing them.
+			console.log($ifHomestretchBlack());
+			$click += 1;
+			console.log($click);
+			if($click <= 2){ //&& $ifHomestretchBlack() === false
+				if($ifHomestretchBlack() === false){
+					$(this).remove()
+					$tokenMove();
+				} else {
+					$blackHome();
+					
+				}
 			} else if ($click >= 3){
 				$click = 0;
 				$turn += 1;
@@ -133,10 +142,17 @@ var $tokenClick = function(){ //activates a token click event
 				$move = $dice[1];
 			}
 			console.log($move);
+			console.log($place);
+			console.log($ifHomestretchWhite());
 			$click += 1
 			if($click <= 2){
-				$(this).remove()
-				$tokenMove();
+				if($ifHomestretchWhite() === false){
+					$(this).remove()
+					$tokenMove();
+				} else {
+					$click -= 1;
+					console.log('try a different move')
+				}
 			} else if ($click >= 3){
 				$click = 0;
 				$turn += 1;
@@ -148,6 +164,70 @@ var $tokenClick = function(){ //activates a token click event
 		});
 	}
 
+}
+
+var $ifHomestretchBlack = function(){
+	if($place === 0 || $place === 1 || $place === 2 || $place === 3 || $place === 4 || $place === 5){
+		if($move-1 >= $place){
+
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
+var $blackHome = function(){
+	// console.log($('.black'));//.parent().data('value')
+	$('.black').each(function(index){
+		var $location = $(this).parent().data('value');
+		if($location === 0 || $location === 1 || $location === 2 || $location === 3 || $location === 4 || $location === 5){
+			$count += 1;
+			// console.log($count)
+		}
+	})
+	if($count === 15){
+		$goHomeBlack();
+	} else {
+		$click -= 1;
+		console.log('try a different move')
+	}
+	console.log($count)
+	console.log('check if black can start winning conditions')
+}
+
+var $goHomeBlack = function(){
+	if ($place <= $move){
+		$self.addClass('chip');
+		$('#home2').append($self);
+	}
+	$checkBlackWin();
+}
+
+var $checkBlackWin = function(){
+	console.log($$('#home2').children('token').length);
+	// if($('#home2').children('token').length = 15){
+	// 	alert('black wins!');
+	// }
+}
+
+var $ifHomestretchWhite = function(){
+	if($place === 18 || $place === 19 || $place === 20 || $place === 21 || $place === 22 || $place === 23){
+		if($move+$place >= 24){
+			$whiteHome();
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
+var $whiteHome = function(){
+	console.log('check for white winning conditions')
 }
 
 var $tokenMove = function(){ //moves the clicked on token
@@ -194,10 +274,6 @@ var $tokenMove = function(){ //moves the clicked on token
 
 	//anyway the tokens need to stop @ 11 and @ 23 respectively... :/
 
-}
-
-var $ifHomestretch = function(){
-	console.log('herro');
 }
 
 
