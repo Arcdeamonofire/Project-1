@@ -20,9 +20,6 @@ var $mouseClick = 0;
 var $isDouble = false;
 var eenie;
 var $count=0;
-// $gameBoard.each(function(i){
-// 	$gameBoard.eq(i).data('value': i);
-// });
 
 $(window).load(function() {
 	$('.token').addClass('hide');
@@ -33,20 +30,19 @@ $(window).load(function() {
 		$start.removeClass('start').addClass('reset').html('Reset');
 		$('h1').append($diceBox);
 		$('h1').append($roll);
-		$rollDice(); //line 39
+		$rollDice();
 
-		$resetButton(); //line 160
+		$resetButton();
 	});
 });
 
 var $rollDice = function(){
 	$($roll).click(function(){
-
 		var $die1 = random();
 		var $die2 = random();
 		$dice = [$die1, $die2];
-		// console.log($dice);
-		$showDice(); //line 64
+		// $findDoubles();
+		$showDice();
 	});
 	
 }
@@ -54,11 +50,11 @@ var $rollDice = function(){
 //need to set up special conditions for Dice doubles!!!
 
 // var $findDoubles = function(){
-// 		if($die1 === $die2){
-// 		$isDouble === true;
+// 		if($dice[0] === $dice[1]){
+// 		$isDouble = true;
 // 		console.log('IS DOUBLES!!!!!');
 // 	} else {
-// 		$isDouble === false;
+// 		$isDouble = false;
 // 	}
 // }
 
@@ -87,7 +83,6 @@ var $tokenClick = function(){ //activates a token click event
 	if($turn%2){
 		$($('.black')).click(function(event){
 			
-			
 			$self = $(this);
 			$place = $self.parent().data('value'); //the current location of the token
 			// console.log($self, $place);
@@ -102,16 +97,19 @@ var $tokenClick = function(){ //activates a token click event
 				$mouseClick = 2;
 				$move = $dice[1];
 			}
+
 			console.log($move);
 			// $ifHomestretchBlack(); //will check if tokens are in the homestretch before moving them or playing them.
 			console.log($ifHomestretchBlack());
 			$click += 1;
+
+
 			console.log($click);
-			if($click <= 2){ //&& $ifHomestretchBlack() === false
+			if($click <= 2){
 				if($ifHomestretchBlack() === false){
 					$(this).remove()
 					$tokenMove();
-				} else {
+				} else if($ifHomestretchBlack() === true){
 					$blackHome();
 					
 				}
@@ -124,6 +122,8 @@ var $tokenClick = function(){ //activates a token click event
 			}
 			
 		});
+
+
 	} else {
 			$($('.white')).click(function(event){
 			
@@ -149,9 +149,8 @@ var $tokenClick = function(){ //activates a token click event
 				if($ifHomestretchWhite() === false){
 					$(this).remove()
 					$tokenMove();
-				} else {
-					$click -= 1;
-					console.log('try a different move')
+				} else if($ifHomestretchWhite() === true){
+					$whiteHome();
 				}
 			} else if ($click >= 3){
 				$click = 0;
@@ -160,7 +159,6 @@ var $tokenClick = function(){ //activates a token click event
 				console.log('next player Pls');
 				$($('.token')).off('click');
 			}
-			
 		});
 	}
 
@@ -180,14 +178,7 @@ var $ifHomestretchBlack = function(){
 }
 
 var $blackHome = function(){
-	// console.log($('.black'));//.parent().data('value')
-	$('.black').each(function(index){
-		var $location = $(this).parent().data('value');
-		if($location === 0 || $location === 1 || $location === 2 || $location === 3 || $location === 4 || $location === 5){
-			$count += 1;
-			// console.log($count)
-		}
-	})
+	$count = $('.top').children('.black').length;
 	if($count === 15){
 		$goHomeBlack();
 	} else {
@@ -198,6 +189,19 @@ var $blackHome = function(){
 	console.log('check if black can start winning conditions')
 }
 
+var $whiteHome = function(){
+
+	$count = $('.bottom').children('.white').length;
+	if($count === 15){
+		$goHomeWhite();
+	} else {
+		$click -= 1;
+		console.log('try a different move')
+	}
+	console.log($count)
+	console.log('check for white winning conditions')
+}
+
 var $goHomeBlack = function(){
 	if ($place <= $move){
 		$self.addClass('chip');
@@ -205,12 +209,19 @@ var $goHomeBlack = function(){
 	}
 	$checkBlackWin();
 }
+var $goHomeWhite = function(){
+	if ($move+$place >= 24){
+		$self.addClass('chip');
+		$('#home1').append($self);
+	}
+	$checkWhiteWin();
+}
 
 var $checkBlackWin = function(){
-	console.log($$('#home2').children('token').length);
-	// if($('#home2').children('token').length = 15){
-	// 	alert('black wins!');
-	// }
+	console.log($('#home2').children('.token').length);
+	if($('#home2').children('.token').length === 15){
+		alert('black wins!');
+	}
 }
 
 var $ifHomestretchWhite = function(){
@@ -226,8 +237,11 @@ var $ifHomestretchWhite = function(){
 	}
 }
 
-var $whiteHome = function(){
-	console.log('check for white winning conditions')
+var $checkWhiteWin = function(){
+	console.log($('#home1').children('.token').length);
+	if($('#home1').children('.token').length === 15){
+		alert('white wins!');
+	}
 }
 
 var $tokenMove = function(){ //moves the clicked on token
